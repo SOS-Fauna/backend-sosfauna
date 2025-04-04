@@ -27,7 +27,7 @@ public class CloudinaryService {
     }
 
 
-    public String getImageUrl(String publicId) {
+    public String getImagemUrl(String publicId) {
         return cloudinary.url().secure(true).generate(publicId);
     }
 
