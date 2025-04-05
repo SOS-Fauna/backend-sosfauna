@@ -60,7 +60,7 @@ public class Denuncia {
     private String rua;
 
     @Column(name = "cep", length = 9)
-    @Size(max = 8)
+    @Size(max = 9)
     private String cep;
 
     @CreationTimestamp

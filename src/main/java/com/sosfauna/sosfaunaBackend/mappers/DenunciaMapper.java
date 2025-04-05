@@ -8,7 +8,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring")
-public interface DenunciaMappers {
+public interface DenunciaMapper {
     @Mapping(target = "orgao", ignore = true)
     @Mapping(target = "statusDenuncia", ignore = true)
     Denuncia transicao(DenunciaRequestDto dto, @MappingTarget Denuncia denuncia);
