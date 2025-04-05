@@ -16,13 +16,18 @@ import java.util.stream.Collectors;
 
 
 
-@RequiredArgsConstructor
+
 @Service
 public class OrgaoService {
 
 
     private final OrgaoRepository orgaoRepository;
     private final OrgaoMapper orgaoMapper;
+
+    public OrgaoService (OrgaoRepository orgaoRepository, OrgaoMapper orgaoMapper) {
+        this.orgaoRepository = orgaoRepository;
+        this.orgaoMapper = orgaoMapper;
+    }
 
 
     public List<OrgaoDto> buscarTodos() {

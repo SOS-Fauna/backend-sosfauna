@@ -5,10 +5,6 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @Table(name = "usuarios")
 public class Usuario {
     @Id
@@ -34,6 +30,97 @@ public class Usuario {
 
     @Column(nullable = false)
     private boolean acesso;
+
+    public Usuario() {
+    }
+
+
+    public Usuario(String id, String cpf, String nome, Date dataNascimento, String telefone, LocalDateTime dataCriacao, boolean acesso) {
+        this.id = id;
+        this.cpf = cpf;
+        this.nome = nome;
+        this.dataNascimento = dataNascimento;
+        this.telefone = telefone;
+        this.dataCriacao = dataCriacao;
+        this.acesso = acesso;
+    }
+
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Date getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public LocalDateTime getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public void setDataCriacao(LocalDateTime dataCriacao) {
+        this.dataCriacao = dataCriacao;
+    }
+
+    public boolean isAcesso() {
+        return acesso;
+    }
+
+    public void setAcesso(boolean acesso) {
+        this.acesso = acesso;
+    }
+
+    // Método adicional para o campo foto_perfil, caso seja necessário
+    // public byte[] getFotoPerfil() {
+    //     return foto_perfil;
+    // }
+
+    // public void setFotoPerfil(byte[] fotoPerfil) {
+    //     this.foto_perfil = fotoPerfil;
+    // }
+
+    // Relacionamento com UsuarioLogin, se necessário
+    /* public UsuarioLogin getUsuarioLogin() {
+        return usuarioLogin;
+    }
+
+    public void setUsuarioLogin(UsuarioLogin usuarioLogin) {
+        this.usuarioLogin = usuarioLogin;
+    } */
+
 
     /*@ManyToOne
     @JoinColumn(name = "id_usuario", nullable = false)

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-04-04T03:37:09-0300",
+    date = "2025-04-05T01:00:33-0300",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.3 (Eclipse Adoptium)"
 )
 @Component
@@ -21,6 +21,19 @@ public class OrgaoMapperImpl implements OrgaoMapper {
         }
 
         Orgao orgao = new Orgao();
+
+        orgao.setNome( orgaoDto.nome() );
+        orgao.setCnpj( orgaoDto.cnpj() );
+        orgao.setDescricao( orgaoDto.descricao() );
+        orgao.setTelefone( orgaoDto.telefone() );
+        orgao.setRedeSocial( orgaoDto.redeSocial() );
+        orgao.setRua( orgaoDto.rua() );
+        orgao.setNumero( orgaoDto.numero() );
+        orgao.setBairro( orgaoDto.bairro() );
+        orgao.setCidade( orgaoDto.cidade() );
+        orgao.setCep( orgaoDto.cep() );
+        orgao.setAcesso( orgaoDto.acesso() );
+        orgao.setDataCadastro( orgaoDto.dataCadastro() );
 
         return orgao;
     }
@@ -43,6 +56,19 @@ public class OrgaoMapperImpl implements OrgaoMapper {
         String cep = null;
         boolean acesso = false;
         LocalDate dataCadastro = null;
+
+        nome = orgao.getNome();
+        cnpj = orgao.getCnpj();
+        descricao = orgao.getDescricao();
+        telefone = orgao.getTelefone();
+        redeSocial = orgao.getRedeSocial();
+        rua = orgao.getRua();
+        numero = orgao.getNumero();
+        bairro = orgao.getBairro();
+        cidade = orgao.getCidade();
+        cep = orgao.getCep();
+        acesso = orgao.isAcesso();
+        dataCadastro = orgao.getDataCadastro();
 
         OrgaoDto orgaoDto = new OrgaoDto( nome, cnpj, descricao, telefone, redeSocial, rua, numero, bairro, cidade, cep, acesso, dataCadastro );
 

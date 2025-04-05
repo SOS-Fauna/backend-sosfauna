@@ -9,13 +9,17 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
-@RequiredArgsConstructor
 @Service
 public class UsuarioService {
     private final UsuarioMapper usuarioMapper;
 
     private final UsuarioRepository usuarioRepository;
 
+    public UsuarioService(UsuarioMapper usuarioMapper, UsuarioRepository usuarioRepository) {
+        this.usuarioMapper = usuarioMapper;
+        this.usuarioRepository = usuarioRepository;
+
+    }
     public UsuarioDto criarUsuario(UsuarioDto dto ) {
         usuarioRepository.findByCpf(dto.cpf()).ifPresent(usuario -> {throw new IllegalArgumentException("Usuario ja cadastrado");});
         Usuario usuario = usuarioMapper.toUsuario(dto);
