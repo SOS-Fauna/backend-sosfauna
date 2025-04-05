@@ -10,14 +10,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@RestController
-@RequiredArgsConstructor
+
 @RequestMapping("orgaos")
 public class OrgaoController {
 
 
     private final OrgaoService orgaoService;
 
+    public OrgaoController(OrgaoService orgaoService) {
+        this.orgaoService = orgaoService;
+    }
 
     @GetMapping("findAll")
     public ResponseEntity<List<OrgaoDto>> buscarTodos() {
