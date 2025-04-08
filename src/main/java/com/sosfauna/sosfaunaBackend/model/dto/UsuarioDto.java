@@ -22,9 +22,11 @@ public record UsuarioDto(@NotBlank(message = "CPF obrigatório")
 
                          // byte[] foto_perfil, ##falta ajustar
 
-                         boolean acesso)
+                         boolean acesso
+                         // String id_usuario # ajeitar a FK.
+)
 
-                         // String id_usuario # ajeitar a FK. {
+
 
 
 {

@@ -1,6 +1,6 @@
 package com.sosfauna.sosfaunaBackend.model.dto;
 
-import com.sosfauna.sosfaunaBackend.model.entity.StatusDenuncia;
+import com.sosfauna.sosfaunaBackend.model.enumerated.StatusDenuncia;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

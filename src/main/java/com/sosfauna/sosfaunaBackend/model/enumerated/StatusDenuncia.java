@@ -1,4 +1,4 @@
-package com.sosfauna.sosfaunaBackend.model.entity;
+package com.sosfauna.sosfaunaBackend.model.enumerated;
 
 public enum StatusDenuncia {
     ABERTO,

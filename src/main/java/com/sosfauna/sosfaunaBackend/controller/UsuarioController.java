@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
+@RequestMapping("usuarios")
 public class UsuarioController {
     private final UsuarioService usuarioService;
 
@@ -17,7 +18,7 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
-    @PostMapping("/Create")
+    @PostMapping("/create")
     public ResponseEntity<UsuarioDto> criarUsuario(@RequestBody @Valid UsuarioDto dto) {
         UsuarioDto usuarioDto = usuarioService.criarUsuario(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioDto);

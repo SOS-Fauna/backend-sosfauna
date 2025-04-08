@@ -2,10 +2,11 @@ package com.sosfauna.sosfaunaBackend.model.entity;
 
 
 import jakarta.persistence.*;
-import lombok.*;
+
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -52,13 +53,16 @@ public class Orgao  {
     @Column(name = "acesso", nullable = false, columnDefinition = "boolean default true")
     private boolean acesso;
 
-    @Column(nullable = false)
-    private LocalDate dataCadastro = LocalDate.now();
+
+    private Date data_criacao = new Date();
+
+    @OneToMany(mappedBy = "orgao", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Animal> animal =  new ArrayList<>();
 
     public Orgao() {
     }
 
-    // Construtor com todos os campos
+
     public Orgao(String id, String nome, String cnpj, String descricao, String telefone, String redeSocial, String rua, String numero, String bairro, String cidade, String cep, boolean acesso, LocalDate dataCadastro) {
         this.id = id;
         this.nome = nome;
@@ -72,10 +76,24 @@ public class Orgao  {
         this.cidade = cidade;
         this.cep = cep;
         this.acesso = acesso;
-        this.dataCadastro = dataCadastro;
+
     }
 
-    // Getters e Setters
+    public Date getData_criacao() {
+        return data_criacao;
+    }
+
+    public void setData_criacao(Date data_criacao) {
+        this.data_criacao = data_criacao;
+    }
+
+    public List<Animal> getAnimal() {
+        return animal;
+    }
+
+    public void setAnimal(List<Animal> animal) {
+        this.animal = animal;
+    }
 
     public String getId() {
         return id;
@@ -173,13 +191,7 @@ public class Orgao  {
         this.acesso = acesso;
     }
 
-    public LocalDate getDataCadastro() {
-        return dataCadastro;
-    }
 
-    public void setDataCadastro(LocalDate dataCadastro) {
-        this.dataCadastro = dataCadastro;
-    }
 
 }
 
