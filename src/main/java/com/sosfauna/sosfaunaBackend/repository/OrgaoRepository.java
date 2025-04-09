@@ -10,4 +10,5 @@ import java.util.Optional;
 @Repository
 public interface OrgaoRepository extends JpaRepository<Orgao, String> {
     Optional<Orgao> findByCnpj(String cnpj);
+    Optional<Orgao> findByEmail(String email);
 }

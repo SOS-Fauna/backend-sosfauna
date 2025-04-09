@@ -31,11 +31,13 @@ public class Usuario {
     @Column(nullable = false)
     private boolean acesso;
 
+    String email;
+
     public Usuario() {
     }
 
 
-    public Usuario(String id, String cpf, String nome, Date dataNascimento, String telefone, LocalDateTime dataCriacao, boolean acesso) {
+    public Usuario(String id, String cpf, String nome, Date dataNascimento, String telefone, LocalDateTime dataCriacao, boolean acesso, String email) {
         this.id = id;
         this.cpf = cpf;
         this.nome = nome;
@@ -43,9 +45,17 @@ public class Usuario {
         this.telefone = telefone;
         this.dataCriacao = dataCriacao;
         this.acesso = acesso;
+        this.email = email;
     }
 
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.id = email;
+    }
 
     public String getId() {
         return id;

@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-04-05T01:00:33-0300",
-    comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.3 (Eclipse Adoptium)"
+    date = "2025-04-08T14:01:25-0300",
+    comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.6 (Oracle Corporation)"
 )
 @Component
 public class OrgaoMapperImpl implements OrgaoMapper {
@@ -22,6 +22,7 @@ public class OrgaoMapperImpl implements OrgaoMapper {
 
         Orgao orgao = new Orgao();
 
+        orgao.setEmail( orgaoDto.email() );
         orgao.setNome( orgaoDto.nome() );
         orgao.setCnpj( orgaoDto.cnpj() );
         orgao.setDescricao( orgaoDto.descricao() );
@@ -56,6 +57,7 @@ public class OrgaoMapperImpl implements OrgaoMapper {
         String cep = null;
         boolean acesso = false;
         LocalDate dataCadastro = null;
+        String email = null;
 
         nome = orgao.getNome();
         cnpj = orgao.getCnpj();
@@ -69,8 +71,9 @@ public class OrgaoMapperImpl implements OrgaoMapper {
         cep = orgao.getCep();
         acesso = orgao.isAcesso();
         dataCadastro = orgao.getDataCadastro();
+        email = orgao.getEmail();
 
-        OrgaoDto orgaoDto = new OrgaoDto( nome, cnpj, descricao, telefone, redeSocial, rua, numero, bairro, cidade, cep, acesso, dataCadastro );
+        OrgaoDto orgaoDto = new OrgaoDto( nome, cnpj, descricao, telefone, redeSocial, rua, numero, bairro, cidade, cep, acesso, dataCadastro, email );
 
         return orgaoDto;
     }

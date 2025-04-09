@@ -4,6 +4,7 @@ import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
 import java.util.Map;
@@ -21,7 +22,7 @@ public class CloudinaryService {
         Map envioResultado = cloudinary.uploader().upload(arquivo.getBytes(), ObjectUtils.asMap(
                 "folder", "denuncias",
                 "resource_type", "image",
-                "type", "upload"
+                "type", "upload"  //upload
         ));
         return (String) envioResultado.get("public_id");
     }
@@ -31,8 +32,11 @@ public class CloudinaryService {
         return cloudinary.url().secure(true).generate(publicId);
     }
 
+
     public void deletarImagem(String publicId) throws IOException {
         Map<String, Object> opcoes = ObjectUtils.asMap("invalidate", true);
         cloudinary.uploader().destroy(publicId, opcoes);
     }
+
+
 }

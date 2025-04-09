@@ -55,7 +55,11 @@ public record OrgaoDto(
         boolean acesso,
 
         @NotNull(message = "Data Obrigatória")
-        LocalDate dataCadastro
+        LocalDate dataCadastro,
+
+        String email
+
+
 
 
 ) {

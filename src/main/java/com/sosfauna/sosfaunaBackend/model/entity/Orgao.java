@@ -55,11 +55,13 @@ public class Orgao  {
     @Column(nullable = false)
     private LocalDate dataCadastro = LocalDate.now();
 
+    String email;
+
     public Orgao() {
     }
 
     // Construtor com todos os campos
-    public Orgao(String id, String nome, String cnpj, String descricao, String telefone, String redeSocial, String rua, String numero, String bairro, String cidade, String cep, boolean acesso, LocalDate dataCadastro) {
+    public Orgao(String id, String nome, String cnpj, String descricao, String telefone, String redeSocial, String rua, String numero, String bairro, String cidade, String cep, boolean acesso, LocalDate dataCadastro, String email) {
         this.id = id;
         this.nome = nome;
         this.cnpj = cnpj;
@@ -73,9 +75,17 @@ public class Orgao  {
         this.cep = cep;
         this.acesso = acesso;
         this.dataCadastro = dataCadastro;
+        this.email = email;
     }
 
     // Getters e Setters
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getId() {
         return id;
