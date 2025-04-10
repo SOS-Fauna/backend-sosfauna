@@ -113,9 +113,9 @@ erDiagram
         VARCHAR orgaos_id FK
     }
 
-    USUARIOS ||--o{ DENUNCIAS : realiza
-    ORGAOS ||--o{ DENUNCIAS : recebe
-    ORGAOS ||--o{ ANIMAIS_ADOCAO : disponibiliza
+    USUARIOS ||--o{ DENUNCIAS : 
+    ORGAOS ||--o{ DENUNCIAS : 
+    ORGAOS ||--o{ ANIMAIS_ADOCAO : 
 
 ```
 
