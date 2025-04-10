@@ -2,6 +2,7 @@ package com.sosfauna.sosfaunaBackend.controller;
 
 import com.sosfauna.sosfaunaBackend.model.dto.DenunciaRequestDto;
 import com.sosfauna.sosfaunaBackend.model.dto.DenunciaResponseDto;
+import com.sosfauna.sosfaunaBackend.model.dto.ProtocoloResponse;
 import com.sosfauna.sosfaunaBackend.service.CloudinaryService;
 import com.sosfauna.sosfaunaBackend.service.DenunciaService;
 import jakarta.validation.Valid;
@@ -50,9 +51,15 @@ public class DenunciaController {
     }
 
     //Liberar Rota
+//    @GetMapping("/protocolo/{protocolo}")
+//    public ResponseEntity<DenunciaResponseDto> buscarPorProtocolo(@PathVariable String protocolo) {
+//        DenunciaResponseDto dto = denunciaService.buscarProtocolo(protocolo);
+//        return ResponseEntity.ok(dto);
+//    }
+
     @GetMapping("/protocolo/{protocolo}")
-    public ResponseEntity<DenunciaResponseDto> buscarPorProtocolo(@PathVariable String protocolo) {
-        DenunciaResponseDto dto = denunciaService.buscarProtocolo(protocolo);
+    public ResponseEntity<ProtocoloResponse> buscarPorProtocolo(@PathVariable String protocolo) {
+        ProtocoloResponse dto = denunciaService.buscarProtocolo(protocolo);
         return ResponseEntity.ok(dto);
     }
 

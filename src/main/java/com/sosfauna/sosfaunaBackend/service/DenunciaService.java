@@ -1,8 +1,10 @@
 package com.sosfauna.sosfaunaBackend.service;
 
 import com.sosfauna.sosfaunaBackend.mappers.DenunciaMapper;
+import com.sosfauna.sosfaunaBackend.mappers.ProtocoloMapper;
 import com.sosfauna.sosfaunaBackend.model.dto.DenunciaRequestDto;
 import com.sosfauna.sosfaunaBackend.model.dto.DenunciaResponseDto;
+import com.sosfauna.sosfaunaBackend.model.dto.ProtocoloResponse;
 import com.sosfauna.sosfaunaBackend.model.entity.Denuncia;
 import com.sosfauna.sosfaunaBackend.model.entity.Orgao;
 import com.sosfauna.sosfaunaBackend.model.entity.StatusDenuncia;
@@ -26,6 +28,7 @@ public class DenunciaService {
     private final DenunciaMapper denunciaMapper;
     private final UsuarioRepository usuarioRepository;
     private final GerarProtocoloService gerarProtocoloService;
+    private final ProtocoloMapper protocoloMapper;
 
     public DenunciaService(
             DenunciaRepository denunciaRepository,
@@ -33,7 +36,8 @@ public class DenunciaService {
             CloudinaryService cloudinaryService,
             DenunciaMapper denunciaMapper,
             UsuarioRepository usuarioRepository,
-            GerarProtocoloService gerarProtocoloService
+            GerarProtocoloService gerarProtocoloService,
+            ProtocoloMapper protocoloMapper
     ) {
         this.denunciaRepository = denunciaRepository;
         this.orgaoRepository = orgaoRepository;
@@ -41,6 +45,7 @@ public class DenunciaService {
         this.denunciaMapper = denunciaMapper;
         this.usuarioRepository = usuarioRepository;
         this.gerarProtocoloService = gerarProtocoloService;
+        this.protocoloMapper = protocoloMapper;
     }
 
     private String getEmailLogado() {
@@ -98,11 +103,20 @@ public class DenunciaService {
         denunciaRepository.save(denuncia);
     }
 
-    public DenunciaResponseDto buscarProtocolo(String protocolo) {
+//    public ProtocoloResponse buscarProtocolo(String protocolo) {
+//        Denuncia denuncia = denunciaRepository.findByProtocolo(protocolo.toUpperCase())
+//                .orElseThrow(() -> new IllegalArgumentException("Denúncia não encontrada com esse protocolo"));
+//
+//        return denunciaMapper.toResponseDto(denuncia, cloudinaryService);
+//    }
+
+    public ProtocoloResponse buscarProtocolo(String protocolo) {
+
+        StatusDenuncia statusDenuncia;
         Denuncia denuncia = denunciaRepository.findByProtocolo(protocolo.toUpperCase())
                 .orElseThrow(() -> new IllegalArgumentException("Denúncia não encontrada com esse protocolo"));
 
-        return denunciaMapper.toResponseDto(denuncia, cloudinaryService);
+        return protocoloMapper.toResponseDto(denuncia);
     }
 
 
