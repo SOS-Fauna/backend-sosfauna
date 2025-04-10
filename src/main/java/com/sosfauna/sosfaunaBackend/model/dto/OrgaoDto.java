@@ -6,7 +6,8 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
-
+import java.util.Date;
+import java.util.List;
 
 
 public record OrgaoDto(
@@ -54,12 +55,9 @@ public record OrgaoDto(
         @NotNull(message = "Acesso Obrigatório") //mutavel
         boolean acesso,
 
-        @NotNull(message = "Data Obrigatória")
-        LocalDate dataCadastro,
+        Date data_criacao,
 
-        String email
-
-
+        List<AnimalResponse> animal
 
 
 ) {

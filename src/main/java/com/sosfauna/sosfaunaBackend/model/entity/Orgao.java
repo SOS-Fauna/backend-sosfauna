@@ -2,10 +2,11 @@ package com.sosfauna.sosfaunaBackend.model.entity;
 
 
 import jakarta.persistence.*;
-import lombok.*;
+
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -47,21 +48,22 @@ public class Orgao  {
     @Column(nullable = false)
     private String cep;
 
+    //private byte[] foto_perfil; falta checar
 
     @Column(name = "acesso", nullable = false, columnDefinition = "boolean default true")
     private boolean acesso;
 
-    @Column(nullable = false)
-    private LocalDate dataCadastro = LocalDate.now();
 
-    String email;
-    String public_id;
+    private Date data_criacao = new Date();
+
+    @OneToMany(mappedBy = "orgao", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Animal> animal =  new ArrayList<>();
 
     public Orgao() {
     }
 
 
-    public Orgao(String id, String nome, String cnpj, String descricao, String telefone, String redeSocial, String rua, String numero, String bairro, String cidade, String cep, boolean acesso, LocalDate dataCadastro, String email, String public_id) {
+    public Orgao(String id, String nome, String cnpj, String descricao, String telefone, String redeSocial, String rua, String numero, String bairro, String cidade, String cep, boolean acesso, LocalDate dataCadastro) {
         this.id = id;
         this.nome = nome;
         this.cnpj = cnpj;
@@ -74,28 +76,23 @@ public class Orgao  {
         this.cidade = cidade;
         this.cep = cep;
         this.acesso = acesso;
-        this.dataCadastro = dataCadastro;
-        this.email = email;
-        this.public_id = public_id;
+
     }
 
-
-
-
-    public String getPublic_id() {
-        return public_id;
+    public Date getData_criacao() {
+        return data_criacao;
     }
 
-    public void setPublic_id(String public_id) {
-        this.public_id = public_id;
+    public void setData_criacao(Date data_criacao) {
+        this.data_criacao = data_criacao;
     }
 
-    public String getEmail() {
-        return email;
+    public List<Animal> getAnimal() {
+        return animal;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setAnimal(List<Animal> animal) {
+        this.animal = animal;
     }
 
     public String getId() {
@@ -194,13 +191,7 @@ public class Orgao  {
         this.acesso = acesso;
     }
 
-    public LocalDate getDataCadastro() {
-        return dataCadastro;
-    }
 
-    public void setDataCadastro(LocalDate dataCadastro) {
-        this.dataCadastro = dataCadastro;
-    }
 
 }
 
