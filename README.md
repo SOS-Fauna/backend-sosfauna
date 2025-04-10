@@ -1,9 +1,8 @@
 
 
 
-
 ```mermaid
-erDiagram
+ erDiagram
     ORGAOS {
         VARCHAR id PK
         VARCHAR nome
