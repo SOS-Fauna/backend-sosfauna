@@ -47,7 +47,6 @@ public class Orgao  {
     @Column(nullable = false)
     private String cep;
 
-    //private byte[] foto_perfil; falta checar
 
     @Column(name = "acesso", nullable = false, columnDefinition = "boolean default true")
     private boolean acesso;
@@ -56,12 +55,13 @@ public class Orgao  {
     private LocalDate dataCadastro = LocalDate.now();
 
     String email;
+    String public_id;
 
     public Orgao() {
     }
 
-    // Construtor com todos os campos
-    public Orgao(String id, String nome, String cnpj, String descricao, String telefone, String redeSocial, String rua, String numero, String bairro, String cidade, String cep, boolean acesso, LocalDate dataCadastro, String email) {
+
+    public Orgao(String id, String nome, String cnpj, String descricao, String telefone, String redeSocial, String rua, String numero, String bairro, String cidade, String cep, boolean acesso, LocalDate dataCadastro, String email, String public_id) {
         this.id = id;
         this.nome = nome;
         this.cnpj = cnpj;
@@ -76,9 +76,20 @@ public class Orgao  {
         this.acesso = acesso;
         this.dataCadastro = dataCadastro;
         this.email = email;
+        this.public_id = public_id;
     }
 
-    // Getters e Setters
+
+
+
+    public String getPublic_id() {
+        return public_id;
+    }
+
+    public void setPublic_id(String public_id) {
+        this.public_id = public_id;
+    }
+
     public String getEmail() {
         return email;
     }

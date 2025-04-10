@@ -1,9 +1,6 @@
 package com.sosfauna.sosfaunaBackend.model.entity;
 
-import com.sosfauna.sosfaunaBackend.model.dto.DenunciaRequestDto;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -19,48 +16,16 @@ public class Denuncia {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
-    @NotBlank(message = "Imagem é um campo obrigatório")
-    @Column(name = "public_id", nullable = false, unique = true)
+
     private String publicId;
-
-    @NotBlank(message = "Animal é um campo obrigatório")
-    @Column(name = "animal", length = 50, nullable = false)
-    @Size(max = 50)
     private String animal;
-
-    @Column(name = "denunciado", length = 50)
-    @Size(max = 50)
     private String denunciado;
-
-    @NotBlank(message = "Descrição é um campo obrigatória")
-    @Column(name = "descricao", nullable = false, columnDefinition = "TEXT")
     private String descricao;
-
-    @NotNull(message = "Data do ocorrido é um campo obrigatório")
-    @Column(name = "data_ocorrido", nullable = false)
     private LocalDate dataOcorrido;
-
-    @NotNull(message = "Hora do ocorrido é um campo  obrigatório")
-    @Column(name = "hora_ocorrido", nullable = false)
     private LocalTime horaOcorrido;
-
-    @NotBlank(message = "Bairro é um campo obrigatório")
-    @Column(name = "bairro", length = 50, nullable = false)
-    @Size(max = 50)
     private String bairro;
-
-    @NotBlank(message = "Numero de endereço é um campo obrigatório")
-    @Column(name = "numero", length = 10, nullable = false)
-    @Size(max = 10)
     private String numero;
-
-    @NotBlank(message = "Rua é um campo obrigatório")
-    @Column(name = "rua", length = 50, nullable = false)
-    @Size(max = 50)
     private String rua;
-
-    @Column(name = "cep", length = 9)
-    @Size(max = 9)
     private String cep;
 
     @CreationTimestamp
@@ -71,17 +36,21 @@ public class Denuncia {
     @Column(name = "status_denuncia", nullable = false)
     private StatusDenuncia statusDenuncia = StatusDenuncia.ABERTO;
 
+    @Column(name = "protocolo", unique = true)
+    @Size(max = 10)
+    private String protocolo;
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_orgao", nullable = true)
+    @JoinColumn(name = "id_orgao", nullable = true) //mudei de id_orgaos p orgaos_id
     private Orgao orgao;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_usuario", nullable = false)
+    @JoinColumn(name = "usuario_id", nullable = false) //mudei de id_usuario p usuario_id
     private Usuario usuario;
 
     public Denuncia() {}
 
-    public Denuncia(String id, String publicId, String animal, String denunciado, String descricao,LocalDate dataOcorrido, LocalTime horaOcorrido, String bairro, String numero,String rua, String cep, LocalDateTime dataCriacao, StatusDenuncia statusDenuncia) {
+    public Denuncia(String id, String publicId, String animal, String denunciado, String descricao,LocalDate dataOcorrido, LocalTime horaOcorrido, String bairro, String numero,String rua, String cep, LocalDateTime dataCriacao, StatusDenuncia statusDenuncia, String protocolo) {
         this.id = id;
         this.publicId = publicId;
         this.animal = animal;
@@ -95,7 +64,10 @@ public class Denuncia {
         this.cep = cep;
         this.dataCriacao = dataCriacao;
         this.statusDenuncia = statusDenuncia;
+        this.protocolo = protocolo;
     }
+
+
 
     public String getId() {
         return id;
@@ -199,6 +171,14 @@ public class Denuncia {
 
     public void setStatusDenuncia(StatusDenuncia statusDenuncia) {
         this.statusDenuncia = statusDenuncia;
+    }
+
+    public String getProtocolo() {
+        return protocolo;
+    }
+
+    public void setProtocolo(String protocolo) {
+        this.protocolo = protocolo;
     }
 
     public Usuario getUsuario() {

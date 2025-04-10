@@ -36,6 +36,8 @@ public record DenunciaRequestDto(
 
         @Pattern(regexp = "\\d{5}-?\\d{3}", message = "CEP inválido") String cep,
 
-        @Nullable String idOrgao
+        @Nullable String idOrgao,
+
+        @Nullable String nomeOrgao
 
 ){}

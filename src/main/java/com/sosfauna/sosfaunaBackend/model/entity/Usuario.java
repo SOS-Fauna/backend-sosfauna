@@ -1,6 +1,5 @@
 package com.sosfauna.sosfaunaBackend.model.entity;
 import jakarta.persistence.*;
-import lombok.*;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -23,7 +22,6 @@ public class Usuario {
     @Column(nullable = false)
     private String telefone;
 
-    //private byte[] foto_perfil; falta checar
 
     @Column(nullable = false)
     private LocalDateTime dataCriacao = LocalDateTime.now();
@@ -32,12 +30,13 @@ public class Usuario {
     private boolean acesso;
 
     String email;
+    String public_id;
 
     public Usuario() {
     }
 
 
-    public Usuario(String id, String cpf, String nome, Date dataNascimento, String telefone, LocalDateTime dataCriacao, boolean acesso, String email) {
+    public Usuario(String id, String cpf, String nome, Date dataNascimento, String telefone, LocalDateTime dataCriacao, boolean acesso, String email, String public_id) {
         this.id = id;
         this.cpf = cpf;
         this.nome = nome;
@@ -46,8 +45,17 @@ public class Usuario {
         this.dataCriacao = dataCriacao;
         this.acesso = acesso;
         this.email = email;
+        this.public_id = public_id;
+
     }
 
+    public String getPublic_id() {
+        return public_id;
+    }
+
+    public void setPublic_id(String public_id) {
+        this.public_id = public_id;
+    }
 
     public String getEmail() {
         return email;
@@ -113,28 +121,4 @@ public class Usuario {
         this.acesso = acesso;
     }
 
-    // Método adicional para o campo foto_perfil, caso seja necessário
-    // public byte[] getFotoPerfil() {
-    //     return foto_perfil;
-    // }
-
-    // public void setFotoPerfil(byte[] fotoPerfil) {
-    //     this.foto_perfil = fotoPerfil;
-    // }
-
-    // Relacionamento com UsuarioLogin, se necessário
-    /* public UsuarioLogin getUsuarioLogin() {
-        return usuarioLogin;
-    }
-
-    public void setUsuarioLogin(UsuarioLogin usuarioLogin) {
-        this.usuarioLogin = usuarioLogin;
-    } */
-
-
-    /*@ManyToOne
-    @JoinColumn(name = "id_usuario", nullable = false)
-    private UsuarioLogin usuarioLogin;
-    precisa de reparo
-     */
 }

@@ -8,6 +8,7 @@ import java.time.LocalTime;
 
 public record DenunciaResponseDto(
         String id,
+        String protocolo,
         String imagemUrl,
         String animal,
         String denunciado,

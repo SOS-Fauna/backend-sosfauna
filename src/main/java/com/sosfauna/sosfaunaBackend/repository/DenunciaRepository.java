@@ -15,6 +15,8 @@ public interface DenunciaRepository extends JpaRepository<Denuncia, String> {
     List<Denuncia> findByUsuarioId(String idUsuario);
     List<Denuncia> findByOrgaoIsNull();
     List<Denuncia> findByOrgaoIsNotNull();
+    Optional<Denuncia> findByProtocolo(String protocolo);
+
 
 
 

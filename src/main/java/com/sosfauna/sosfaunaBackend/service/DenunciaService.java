@@ -25,19 +25,22 @@ public class DenunciaService {
     private final CloudinaryService cloudinaryService;
     private final DenunciaMapper denunciaMapper;
     private final UsuarioRepository usuarioRepository;
+    private final GerarProtocoloService gerarProtocoloService;
 
     public DenunciaService(
             DenunciaRepository denunciaRepository,
             OrgaoRepository orgaoRepository,
             CloudinaryService cloudinaryService,
             DenunciaMapper denunciaMapper,
-            UsuarioRepository usuarioRepository
+            UsuarioRepository usuarioRepository,
+            GerarProtocoloService gerarProtocoloService
     ) {
         this.denunciaRepository = denunciaRepository;
         this.orgaoRepository = orgaoRepository;
         this.cloudinaryService = cloudinaryService;
         this.denunciaMapper = denunciaMapper;
         this.usuarioRepository = usuarioRepository;
+        this.gerarProtocoloService = gerarProtocoloService;
     }
 
     private String getEmailLogado() {
@@ -67,6 +70,7 @@ public class DenunciaService {
         Denuncia denuncia = denunciaMapper.transicao(dto, new Denuncia());
         denuncia.setUsuario(usuario);
         denuncia.setPublicId(publicId);
+        denuncia.setProtocolo(gerarProtocoloService.gerar());
 
         return denunciaMapper.toResponseDto(denunciaRepository.save(denuncia), cloudinaryService);
     }
@@ -93,6 +97,34 @@ public class DenunciaService {
         denuncia.setStatusDenuncia(StatusDenuncia.ANALISE);
         denunciaRepository.save(denuncia);
     }
+
+    public DenunciaResponseDto buscarProtocolo(String protocolo) {
+        Denuncia denuncia = denunciaRepository.findByProtocolo(protocolo.toUpperCase())
+                .orElseThrow(() -> new IllegalArgumentException("Denúncia não encontrada com esse protocolo"));
+
+        return denunciaMapper.toResponseDto(denuncia, cloudinaryService);
+    }
+
+
+    public void concluirDenuncia(String idDenuncia) {
+        Denuncia denuncia = denunciaRepository.findById(idDenuncia)
+                .orElseThrow(() -> new IllegalArgumentException("Denúncia não encontrada"));
+
+        if (denuncia.getStatusDenuncia() != StatusDenuncia.ANALISE) {
+            throw new IllegalStateException("Só é possível concluir uma denúncia que está em análise");
+        }
+
+        denuncia.setStatusDenuncia(StatusDenuncia.CONCLUIDA);
+        denunciaRepository.save(denuncia);
+    }
+
+    public void deletarDenuncia(String idDenuncia){
+        Denuncia denuncia = denunciaRepository.findById(idDenuncia).orElseThrow(() -> new IllegalArgumentException("Denúncia não encontrada"));
+        denunciaRepository.delete(denuncia);
+    }
+
+
+
 
 
 }

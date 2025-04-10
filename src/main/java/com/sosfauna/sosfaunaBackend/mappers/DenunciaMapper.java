@@ -22,6 +22,7 @@ public interface DenunciaMapper {
     @Mapping(target = "imagemUrl", expression = "java(cloudinaryService.getImagemUrl(denuncia.getPublicId()))")
     @Mapping(target = "nomeOrgao", expression = "java(denuncia.getOrgao() != null ? denuncia.getOrgao().getNome() : null)")
     @Mapping(target = "idUsuario", expression = "java(denuncia.getUsuario() != null ? denuncia.getUsuario().getId() : null)")
+    @Mapping(target = "idOrgao", expression = "java(denuncia.getOrgao() != null ? denuncia.getOrgao().getId() : null)")
     DenunciaResponseDto toResponseDto(Denuncia denuncia, @Context CloudinaryService cloudinaryService);
 
     List<DenunciaResponseDto> toResponseDto(List<Denuncia> denuncia,@Context CloudinaryService cloudinaryService );

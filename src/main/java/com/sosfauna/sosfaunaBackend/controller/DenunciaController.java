@@ -49,11 +49,40 @@ public class DenunciaController {
         return ResponseEntity.ok(denunciaService.listarAceitas());
     }
 
+    //Liberar Rota
+    @GetMapping("/protocolo/{protocolo}")
+    public ResponseEntity<DenunciaResponseDto> buscarPorProtocolo(@PathVariable String protocolo) {
+        DenunciaResponseDto dto = denunciaService.buscarProtocolo(protocolo);
+        return ResponseEntity.ok(dto);
+    }
+
 
     @PatchMapping("/{id}/aceitar")
     public ResponseEntity<Void> aceitarDenuncia(@PathVariable("id") String idDenuncia) {
         denunciaService.aceitarDenuncia(idDenuncia);
         return ResponseEntity.noContent().build();
     }
+
+    @PatchMapping("/concluir/{idDenuncia}")
+    public ResponseEntity<String> concluirDenuncia(@PathVariable String idDenuncia) {
+        try {
+            denunciaService.concluirDenuncia(idDenuncia);
+            return ResponseEntity.ok("Denúncia concluída com sucesso.");
+        } catch (IllegalArgumentException | IllegalStateException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/deletar/{idDenuncia}")
+    public ResponseEntity<String> deletarDenuncia(@PathVariable String idDenuncia) {
+        try {
+            denunciaService.deletarDenuncia(idDenuncia);
+            return ResponseEntity.ok("Denúncia deletada com sucesso.");
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
+
 
 }

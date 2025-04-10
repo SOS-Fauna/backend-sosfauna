@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-04-08T14:01:24-0300",
+    date = "2025-04-09T20:01:37-0300",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.6 (Oracle Corporation)"
 )
 @Component
@@ -47,6 +47,7 @@ public class DenunciaMapperImpl implements DenunciaMapper {
         }
 
         String id = null;
+        String protocolo = null;
         String animal = null;
         String denunciado = null;
         String descricao = null;
@@ -60,6 +61,7 @@ public class DenunciaMapperImpl implements DenunciaMapper {
         StatusDenuncia statusDenuncia = null;
 
         id = denuncia.getId();
+        protocolo = denuncia.getProtocolo();
         animal = denuncia.getAnimal();
         denunciado = denuncia.getDenunciado();
         descricao = denuncia.getDescricao();
@@ -75,9 +77,9 @@ public class DenunciaMapperImpl implements DenunciaMapper {
         String imagemUrl = cloudinaryService.getImagemUrl(denuncia.getPublicId());
         String nomeOrgao = denuncia.getOrgao() != null ? denuncia.getOrgao().getNome() : null;
         String idUsuario = denuncia.getUsuario() != null ? denuncia.getUsuario().getId() : null;
-        String idOrgao = null;
+        String idOrgao = denuncia.getOrgao() != null ? denuncia.getOrgao().getId() : null;
 
-        DenunciaResponseDto denunciaResponseDto = new DenunciaResponseDto( id, imagemUrl, animal, denunciado, descricao, dataOcorrido, horaOcorrido, bairro, numero, rua, cep, idOrgao, idUsuario, nomeOrgao, dataCriacao, statusDenuncia );
+        DenunciaResponseDto denunciaResponseDto = new DenunciaResponseDto( id, protocolo, imagemUrl, animal, denunciado, descricao, dataOcorrido, horaOcorrido, bairro, numero, rua, cep, idOrgao, idUsuario, nomeOrgao, dataCriacao, statusDenuncia );
 
         return denunciaResponseDto;
     }
