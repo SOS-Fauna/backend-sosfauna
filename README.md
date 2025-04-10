@@ -2,11 +2,11 @@
 
 
 ```mermaid
- erDiagram
+erDiagram
     ORGAOS {
         VARCHAR id PK
         VARCHAR nome
-        VARCHAR cnpj UNIQUE
+        VARCHAR cnpj
         TEXT descricao
         VARCHAR telefone
         VARCHAR rede_social
@@ -19,20 +19,18 @@
         BOOLEAN acesso
         DATETIME data_criacao
     }
-
     USUARIOS {
         VARCHAR id PK
-        VARCHAR cpf UNIQUE
+        VARCHAR cpf
         VARCHAR nome
         DATETIME dt_nascimento
         VARCHAR telefone
         BLOB foto_perfil
         DATETIME dataCriacao
         BOOLEAN acesso
-        VARCHAR email UNIQUE
+        VARCHAR email
         VARCHAR public_id
     }
-
     DENUNCIAS {
         VARCHAR id PK
         VARCHAR animal
@@ -49,7 +47,6 @@
         VARCHAR usuario_id FK
         VARCHAR orgaos_id FK
     }
-
     ANIMAIS_ADOCAO {
         INT id PK
         VARCHAR nome
@@ -62,8 +59,8 @@
         VARCHAR orgaos_id FK
     }
 
-    USUARIOS ||--o{ DENUNCIAS : "realiza"
-    ORGAOS ||--o{ DENUNCIAS : "recebe"
-    ORGAOS ||--o{ ANIMAIS_ADOCAO : "disponibiliza"
+    USUARIOS ||--o{ DENUNCIAS : realiza
+    ORGAOS ||--o{ DENUNCIAS : recebe
+    ORGAOS ||--o{ ANIMAIS_ADOCAO : disponibiliza
 
 ```
