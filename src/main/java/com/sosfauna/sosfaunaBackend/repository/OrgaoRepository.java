@@ -12,7 +12,7 @@ import java.util.Optional;
 public interface OrgaoRepository extends JpaRepository<Orgao, String> {
     Optional<Orgao> findByCnpj(String cnpj);
     Optional<Orgao> findByIdOrCnpj(String id, String cnpj);
-    /*Optional<Orgao> findByEmail(String email);*/
+    Optional<Orgao> findByEmail(String email);
 
     List<Orgao> id(String id);
 

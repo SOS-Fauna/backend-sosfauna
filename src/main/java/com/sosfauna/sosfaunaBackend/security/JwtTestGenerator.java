@@ -13,7 +13,7 @@ public class JwtTestGenerator {
         SecretKey key = Keys.hmacShaKeyFor(secret.getBytes());
 
         String token = Jwts.builder()
-                .subject("joaosilva@email.com")
+                .subject("ibama@org.com")
                 .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24)) // 24h
                 .signWith(Keys.hmacShaKeyFor(secret.getBytes()), Jwts.SIG.HS256)
                 .compact();

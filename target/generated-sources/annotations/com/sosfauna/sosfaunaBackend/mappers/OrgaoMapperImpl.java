@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-04-08T17:37:48-0300",
+    date = "2025-04-10T04:45:01-0300",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.6 (Oracle Corporation)"
 )
 @Component
@@ -27,6 +27,8 @@ public class OrgaoMapperImpl implements OrgaoMapper {
         Orgao orgao = new Orgao();
 
         orgao.setAnimal( animalResponseListToAnimalList( orgaoDto.animal() ) );
+        orgao.setPublicId( orgaoDto.publicId() );
+        orgao.setEmail( orgaoDto.email() );
         orgao.setData_criacao( orgaoDto.data_criacao() );
         orgao.setNome( orgaoDto.nome() );
         orgao.setCnpj( orgaoDto.cnpj() );
@@ -61,6 +63,8 @@ public class OrgaoMapperImpl implements OrgaoMapper {
         String cep = null;
         boolean acesso = false;
         Date data_criacao = null;
+        String email = null;
+        String publicId = null;
         List<AnimalResponse> animal = null;
 
         nome = orgao.getNome();
@@ -75,9 +79,11 @@ public class OrgaoMapperImpl implements OrgaoMapper {
         cep = orgao.getCep();
         acesso = orgao.isAcesso();
         data_criacao = orgao.getData_criacao();
+        email = orgao.getEmail();
+        publicId = orgao.getPublicId();
         animal = animalListToAnimalResponseList( orgao.getAnimal() );
 
-        OrgaoDto orgaoDto = new OrgaoDto( nome, cnpj, descricao, telefone, redeSocial, rua, numero, bairro, cidade, cep, acesso, data_criacao, animal );
+        OrgaoDto orgaoDto = new OrgaoDto( nome, cnpj, descricao, telefone, redeSocial, rua, numero, bairro, cidade, cep, acesso, data_criacao, email, publicId, animal );
 
         return orgaoDto;
     }

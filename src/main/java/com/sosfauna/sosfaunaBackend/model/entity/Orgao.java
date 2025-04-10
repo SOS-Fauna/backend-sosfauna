@@ -2,6 +2,7 @@ package com.sosfauna.sosfaunaBackend.model.entity;
 
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 
 import java.time.LocalDate;
@@ -53,17 +54,24 @@ public class Orgao  {
     @Column(name = "acesso", nullable = false, columnDefinition = "boolean default true")
     private boolean acesso;
 
-
     private Date data_criacao = new Date();
 
     @OneToMany(mappedBy = "orgao", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Animal> animal =  new ArrayList<>();
 
+    //Adicionado
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "public_id")
+    private String publicId;
+
+
     public Orgao() {
     }
 
 
-    public Orgao(String id, String nome, String cnpj, String descricao, String telefone, String redeSocial, String rua, String numero, String bairro, String cidade, String cep, boolean acesso, LocalDate dataCadastro) {
+    public Orgao(String id, String nome, String cnpj, String descricao, String telefone, String redeSocial, String rua, String numero, String bairro, String cidade, String cep, boolean acesso, LocalDate dataCadastro, String email, String publicId) {
         this.id = id;
         this.nome = nome;
         this.cnpj = cnpj;
@@ -76,7 +84,25 @@ public class Orgao  {
         this.cidade = cidade;
         this.cep = cep;
         this.acesso = acesso;
+        this.publicId = publicId;
+        this.email = email;
 
+    }
+
+    public String getPublicId() {
+        return publicId;
+    }
+
+    public void setPublicId(String public_id) {
+        this.publicId = publicId;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Date getData_criacao() {

@@ -12,7 +12,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("animais")
+@RequestMapping("/animais")
 public class AnimalController {
 
 

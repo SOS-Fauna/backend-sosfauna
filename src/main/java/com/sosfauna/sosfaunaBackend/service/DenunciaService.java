@@ -1,5 +1,7 @@
 package com.sosfauna.sosfaunaBackend.service;
 
+
+
 import com.sosfauna.sosfaunaBackend.mappers.DenunciaMapper;
 import com.sosfauna.sosfaunaBackend.mappers.ProtocoloMapper;
 import com.sosfauna.sosfaunaBackend.model.dto.DenunciaRequestDto;
@@ -7,8 +9,8 @@ import com.sosfauna.sosfaunaBackend.model.dto.DenunciaResponseDto;
 import com.sosfauna.sosfaunaBackend.model.dto.ProtocoloResponse;
 import com.sosfauna.sosfaunaBackend.model.entity.Denuncia;
 import com.sosfauna.sosfaunaBackend.model.entity.Orgao;
-import com.sosfauna.sosfaunaBackend.model.entity.StatusDenuncia;
 import com.sosfauna.sosfaunaBackend.model.entity.Usuario;
+import com.sosfauna.sosfaunaBackend.model.enumerated.StatusDenuncia;
 import com.sosfauna.sosfaunaBackend.repository.DenunciaRepository;
 import com.sosfauna.sosfaunaBackend.repository.OrgaoRepository;
 import com.sosfauna.sosfaunaBackend.repository.UsuarioRepository;
@@ -103,13 +105,6 @@ public class DenunciaService {
         denunciaRepository.save(denuncia);
     }
 
-//    public ProtocoloResponse buscarProtocolo(String protocolo) {
-//        Denuncia denuncia = denunciaRepository.findByProtocolo(protocolo.toUpperCase())
-//                .orElseThrow(() -> new IllegalArgumentException("Denúncia não encontrada com esse protocolo"));
-//
-//        return denunciaMapper.toResponseDto(denuncia, cloudinaryService);
-//    }
-
     public ProtocoloResponse buscarProtocolo(String protocolo) {
 
         StatusDenuncia statusDenuncia;
@@ -142,6 +137,8 @@ public class DenunciaService {
 
 
 }
+
+
 
 
 

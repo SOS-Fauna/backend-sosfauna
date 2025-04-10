@@ -57,6 +57,9 @@ public record OrgaoDto(
 
         Date data_criacao,
 
+        String email,    //Adicionado
+        String publicId, //Adicionado
+
         List<AnimalResponse> animal
 
 

@@ -16,7 +16,7 @@ public class Usuario {
     @Column(nullable = false)
     private String nome;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "data_nascimento")
     private Date dataNascimento;
 
     @Column(nullable = false)
@@ -29,7 +29,10 @@ public class Usuario {
     @Column(nullable = false)
     private boolean acesso;
 
+    @Column(name = "email")
     String email;
+
+    @Column(name = "public_id")
     String public_id;
 
     public Usuario() {

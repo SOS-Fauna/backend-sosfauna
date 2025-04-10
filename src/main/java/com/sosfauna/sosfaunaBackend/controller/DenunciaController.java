@@ -26,6 +26,8 @@ public class DenunciaController {
         this.cloudinaryService = cloudinaryService;
     }
 
+
+
     @PostMapping("criar")
     public ResponseEntity<DenunciaResponseDto> criar(@ModelAttribute @Valid DenunciaRequestDto dto) {
         DenunciaResponseDto response = denunciaService.criar(dto);
