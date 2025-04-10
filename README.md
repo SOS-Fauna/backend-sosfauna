@@ -3,83 +3,68 @@
 
 
 ```mermaid
-
 erDiagram
-
-    orgaos_login {
-        varchar(255) id PK
-        varchar(50) email "UNIQUE"
-        varchar(255) senha
-    }
-
-    usuarios_login {
-        varchar(255) id PK
-        varchar(255) email "UNIQUE"
-        varchar(255) senha
-    }
-
-    orgaos {
-        varchar(255) id PK
-        varchar(100) nome
-        varchar(18) cnpj "UNIQUE"
-        varchar(255) descricao
-        varchar(11) telefone
-        varchar(255) rede_social
-        varchar(255) cep
-        varchar(255) cidade
-        varchar(255) rua
-        varchar(255) numero
-        BLOB foto_perfil
+    ORGAOS {
+        VARCHAR id PK
+        VARCHAR nome
+        VARCHAR cnpj UNIQUE
+        TEXT descricao
+        VARCHAR telefone
+        VARCHAR rede_social
+        VARCHAR rua
+        INT numero
+        VARCHAR bairro
+        VARCHAR cidade
+        VARCHAR cep
+        LONGBLOB foto_perfil
         BOOLEAN acesso
-        datetime data_criacao "DEFAULT CURRENT_TIMESTAMP"
-        varchar(255) id_orgao FK
+        DATETIME data_criacao
     }
 
-    usuarios {
-        varchar(255) id PK
-        varchar(11) cpf "UNIQUE"
-        varchar(100) nome
-        date dt_nascimento
-        varchar(11) telefone
+    USUARIOS {
+        VARCHAR id PK
+        VARCHAR cpf UNIQUE
+        VARCHAR nome
+        DATETIME dt_nascimento
+        VARCHAR telefone
         BLOB foto_perfil
-        datetime data_criacao "DEFAULT CURRENT_TIMESTAMP"
+        DATETIME dataCriacao
         BOOLEAN acesso
-        varchar(255) id_usuario FK
+        VARCHAR email UNIQUE
+        VARCHAR public_id
     }
 
-    denuncias {
-        varchar(255) id PK
-        varchar(255) animal
-        varchar(50) denunciado
-        text descricao
-        date data_ocorrido
-        time hora_ocorrido
-        varchar(100) bairro
-        varchar(10) numero
-        varchar(50) rua
-        varchar(10) cep
-        datetime data_criacao "DEFAULT CURRENT_TIMESTAMP"
-        varchar(255) id_usuario FK
-        enum status_denuncia "Em Aberto, Em Analise, Em Diligencia, Concluida, Cancelada"
-        varchar(255) id_orgao FK
+    DENUNCIAS {
+        VARCHAR id PK
+        VARCHAR animal
+        VARCHAR denunciado
+        TEXT descricao
+        DATE data_ocorrido
+        TIME hora_ocorrido
+        VARCHAR bairro
+        VARCHAR numero
+        VARCHAR rua
+        VARCHAR cep
+        DATETIME data_criacao
+        ENUM status_denuncia
+        VARCHAR usuario_id FK
+        VARCHAR orgaos_id FK
     }
 
-    animais_adocao {
-        varchar(255) id PK
-        varchar(40) nome
-        varchar(40) especie
-        int idade
-        enum sexo "M, F"
-        BLOB foto
-        datetime data_criacao "DEFAULT CURRENT_TIMESTAMP"
-        enum status_adocao "disponivel, adotado"
-        varchar(255) id_orgao FK
+    ANIMAIS_ADOCAO {
+        INT id PK
+        VARCHAR nome
+        VARCHAR especie
+        INT idade
+        ENUM sexo
+        LONGBLOB foto
+        DATETIME data_criacao
+        ENUM status_adocao
+        VARCHAR orgaos_id FK
     }
 
-    orgaos_login ||--o{ orgaos : "id_orgao"
-    usuarios_login ||--o{ usuarios : "id_usuario"
-    usuarios ||--o{ denuncias : "id_usuario"
-    orgaos ||--o{ denuncias : "id_orgao"
-    orgaos ||--o{ animais_adocao : "id_orgao"
+    USUARIOS ||--o{ DENUNCIAS : "realiza"
+    ORGAOS ||--o{ DENUNCIAS : "recebe"
+    ORGAOS ||--o{ ANIMAIS_ADOCAO : "disponibiliza"
 
 ```
